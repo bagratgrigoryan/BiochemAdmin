@@ -22,80 +22,8 @@ import GroupWorkIcon from '@mui/icons-material/GroupWork';
 import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
-import {Route, Routes, useNavigate,Link} from "react-router-dom";
+import { Outlet ,Link} from "react-router-dom";
 import NavBar from "./navbar/NavBar";
-import Register from "../pages/Register";
-import CustomizedTables from "./adminPanel/CustomizedTables";
-import Home from "../home/Home";
-
-const arr = [
-    {
-        id: "1",
-        description:"sjdhkhdj",
-        photo: "sjdhhsj.jpg",
-        posts: "jsdksjhdkjhskhdkjsh"
-    },
-    {
-        id: "2",
-        description:"sjdhkhdj",
-        photo: "sjdhhsj.jpg",
-        posts: "jsdksjhdkjhskhdkjsh"
-    },
-    {
-        id: "3",
-        description:"sjdhkhdj",
-        photo: "sjdhhsj.jpg",
-        posts: "jsdksjhdkjhskhdkjsh"
-    },
-    {
-        id: "4",
-        description:"sjdhkhdj",
-        photo: "sjdhhsj.jpg",
-        posts: "jsdksjhdkjhskhdkjsh"
-    },
-    {
-        id: "5",
-        description:"sjdhkhdj",
-        photo: "sjdhhsj.jpg",
-        posts: "jsdksjhdkjhskhdkjsh"
-    },
-    {
-        id: "6",
-        description:"sjdhkhdj",
-        photo: "sjdhhsj.jpg",
-        posts: "jsdksjhdkjhskhdkjsh"
-    },
-    {
-        id: "7",
-        description:"sjdhkhdj",
-        photo: "sjdhhsj.jpg",
-        posts: "jsdksjhdkjhskhdkjsh"
-    },
-    {
-        id: "8",
-        description:"sjdhkhdj",
-        photo: "sjdhhsj.jpg",
-        posts: "jsdksjhdkjhskhdkjsh"
-    },
-    {
-        id: "9",
-        description:"sjdhkhdj",
-        photo: "sjdhhsj.jpg",
-        posts: "jsdksjhdkjhskhdkjsh"
-    },
-    {
-        id: "10",
-        description:"sjdhkhdj",
-        photo: "sjdhhsj.jpg",
-        posts: "jsdksjhdkjhskhdkjsh"
-    },
-    {
-        id: "11",
-        description:"sjdhkhdj",
-        photo: "sjdhhsj.jpg",
-        posts: "jsdksjhdkjhskhdkjsh"
-    }
-];
 
 const drawerWidth = 240;
 
@@ -172,8 +100,7 @@ const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== 'open'})
     }),
 );
 
-export default function MiniDrawer() {
-    const navigate = useNavigate();
+export default function MiniDrawer({ children }) {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
     const handleDrawerOpen = () => {
@@ -219,7 +146,7 @@ export default function MiniDrawer() {
                 <Divider/>
                 <List >
                     <NavBar
-                        path={"/history"}
+                        path={"/user/history"}
                         Name="History"
                         Icon={<HistoryIcon />}
                         style={{
@@ -235,7 +162,7 @@ export default function MiniDrawer() {
                         styleText={{ opacity: open ? 1 : 0 }}
                     />
                     <NavBar
-                        path={"/departments"}
+                        path={"/user/departments"}
                         Name="Departments"
                         Icon={<GroupWorkIcon/>}
                         style={{
@@ -251,7 +178,7 @@ export default function MiniDrawer() {
                         styleText={{ opacity: open ? 1 : 0 }}
                     />
                     <NavBar
-                        path={"/councils"}
+                        path={"/user/councils"}
                         Name="Councils"
                         Icon={<BusinessCenterIcon/>}
                         style={{
@@ -267,7 +194,7 @@ export default function MiniDrawer() {
                         styleText={{ opacity: open ? 1 : 0 }}
                     />
                     <NavBar
-                        path={"/museum"}
+                        path={"/user/museum"}
                         Name="Museum"
                         Icon={<AccountBalanceIcon/>}
                         style={{
@@ -283,7 +210,7 @@ export default function MiniDrawer() {
                         styleText={{ opacity: open ? 1 : 0 }}
                     />
                     <NavBar
-                        path={"/library"}
+                        path={"/user/library"}
                         Name="Library"
                         Icon={<LocalLibraryIcon/>}
                         style={{
@@ -299,7 +226,7 @@ export default function MiniDrawer() {
                         styleText={{ opacity: open ? 1 : 0 }}
                     />
                     <NavBar
-                        path={"/trade&union"}
+                        path={"/user/trade&union"}
                         Name="Trade Union"
                         Icon={<PeopleAltIcon/>}
                         style={{
@@ -315,7 +242,7 @@ export default function MiniDrawer() {
                         styleText={{ opacity: open ? 1 : 0 }}
                     />
                     <NavBar
-                        path={"/media"}
+                        path={"/user/media"}
                         Name="Media"
                         Icon={<CollectionsIcon/>}
                         style={{
@@ -331,7 +258,7 @@ export default function MiniDrawer() {
                         styleText={{ opacity: open ? 1 : 0 }}
                     />
                     <NavBar
-                        path={"/contact"}
+                        path={"/user/contact"}
                         Name="Contact"
                         Icon={<LocalPhoneIcon/>}
                         style={{
@@ -347,7 +274,7 @@ export default function MiniDrawer() {
                         styleText={{ opacity: open ? 1 : 0 }}
                     />
                     <NavBar
-                        path={"/register"}
+                        path={"/user/register"}
                         Name="Register"
                         Icon={<LockOpenIcon/>}
                         style={{
@@ -365,12 +292,8 @@ export default function MiniDrawer() {
                 </List>
             </Drawer>
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-                <DrawerHeader />
-                <Routes>
-                    <Route exact path={"/"} element={<Home/>}/>
-                    <Route exact path={'/register'} element={<Register/>}/>
-                    <Route exact path={'/history'} element={<CustomizedTables arr={arr}/>}/>
-                </Routes>
+              
+                <Outlet/>
             </Box>
         </Box>
     );

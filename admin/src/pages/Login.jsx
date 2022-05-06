@@ -76,7 +76,6 @@ export default function Login() {
                         label="Password"
                         type="password"
                         name="password"
-
                         required='true'
                     />
                 </div>

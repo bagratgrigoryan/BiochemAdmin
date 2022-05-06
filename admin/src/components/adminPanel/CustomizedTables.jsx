@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
+import {styled} from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableCell, {tableCellClasses} from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
@@ -11,10 +11,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import Button from '@mui/material/Button'
 import TablePagination from '@mui/material/TablePagination';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import {useState} from "react";
 
-
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
+const StyledTableCell = styled(TableCell)(({theme}) => ({
     [`&.${tableCellClasses.head}`]: {
         backgroundColor: theme.palette.common.black,
         color: theme.palette.common.white,
@@ -24,7 +22,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     },
 }));
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
+const StyledTableRow = styled(TableRow)(({theme}) => ({
     '&:nth-of-type(odd)': {
         backgroundColor: theme.palette.action.hover,
     },
@@ -35,13 +33,11 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export default function CustomizedTables({arr}) {
+    const key = Object.keys(arr[0]);
     function createData(id, description, photo, posts) {
-        return { id, description, photo, posts };
+        return {id, description, photo, posts};
     }
-
-    const rows =
-        arr.map(item => createData(item.id,item.description,item.photo,item.posts));
-
+    const rows = arr.map(item => createData(item.id, item.description, item.photo, item.posts));
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -56,13 +52,10 @@ export default function CustomizedTables({arr}) {
 
     return (
         <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 700 }} aria-label="customized table">
+            <Table sx={{minWidth: 700}} aria-label="customized table">
                 <TableHead>
                     <TableRow>
-                        <StyledTableCell align="left">Id</StyledTableCell>
-                        <StyledTableCell align="left">Description</StyledTableCell>
-                        <StyledTableCell align="left">Photo</StyledTableCell>
-                        <StyledTableCell align="left">Posts</StyledTableCell>
+                        {key.map(item => <StyledTableCell align="left">{item}</StyledTableCell>)}
                         <StyledTableCell align="left">Edit</StyledTableCell>
                         <StyledTableCell align="left">Delete</StyledTableCell>
                     </TableRow>
@@ -74,18 +67,19 @@ export default function CustomizedTables({arr}) {
                                 {row.id}
                             </StyledTableCell>
                             <StyledTableCell align="left">
-                                {row.description.length > 10 ? row.description.slice(0,10) +'...' : row.description}
+                                {row.description.length > 10 ? row.description.slice(0, 10) + '...' : row.description}
                             </StyledTableCell>
                             <StyledTableCell align="left">{row.photo}</StyledTableCell>
-                            <StyledTableCell align="left">{row.posts.length>10 ? row.posts.slice(0,10)+'...' : row.posts}
+                            <StyledTableCell
+                                align="left">{row.posts.length > 10 ? row.posts.slice(0, 10) + '...' : row.posts}
                             </StyledTableCell>
 
                             <StyledTableCell align="left">
-                                 <Button variant="contained" color="success"><EditIcon />Edit</Button>
+                                <Button variant="contained" color="success"><EditIcon/>Edit</Button>
                             </StyledTableCell>
                             <StyledTableCell align="left">
                                 <Button color="error"
-                                ><DeleteOutlineIcon />Delete</Button>
+                                ><DeleteOutlineIcon/>Delete</Button>
                             </StyledTableCell>
                         </StyledTableRow>
                     ))}
