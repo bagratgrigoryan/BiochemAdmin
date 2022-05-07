@@ -11,6 +11,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import Button from '@mui/material/Button'
 import TablePagination from '@mui/material/TablePagination';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import {useNavigate} from "react-router";
 
 const StyledTableCell = styled(TableCell)(({theme}) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -32,7 +33,7 @@ const StyledTableRow = styled(TableRow)(({theme}) => ({
     },
 }));
 
-export default function CustomizedTables({arr}) {
+export default function CustomizedTables({arr, onClick}) {
     const key = Object.keys(arr[0]);
     function createData(id, description, photo, posts) {
         return {id, description, photo, posts};
@@ -40,7 +41,6 @@ export default function CustomizedTables({arr}) {
     const rows = arr.map(item => createData(item.id, item.description, item.photo, item.posts));
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
-
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
@@ -75,7 +75,7 @@ export default function CustomizedTables({arr}) {
                             </StyledTableCell>
 
                             <StyledTableCell align="left">
-                                <Button variant="contained" color="success"><EditIcon/>Edit</Button>
+                                <Button variant="contained" color="success" onClick={onClick}><EditIcon/>Edit</Button>
                             </StyledTableCell>
                             <StyledTableCell align="left">
                                 <Button color="error"

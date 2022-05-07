@@ -61,7 +61,7 @@ export default function Register() {
     return (
 
             <Box sx={{ '& > :not(style)': { m: 1 },   textAlign: 'center',
-                marginTop: '90px' }}>
+                marginTop: '30px' }}>
                 <div>
                     <TextField
                         style={{margin: '20px', width:'400px'}}

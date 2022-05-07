@@ -22,8 +22,10 @@ import GroupWorkIcon from '@mui/icons-material/GroupWork';
 import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
-import { Outlet ,Link} from "react-router-dom";
+import {Outlet, Link} from "react-router-dom";
 import NavBar from "./navbar/NavBar";
+import MenuListComposition from "./adminPanel/MenuListComposition";
+
 
 const drawerWidth = 240;
 
@@ -100,7 +102,7 @@ const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== 'open'})
     }),
 );
 
-export default function MiniDrawer({ children }) {
+export default function MiniDrawer({children}) {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
     const handleDrawerOpen = () => {
@@ -112,10 +114,10 @@ export default function MiniDrawer({ children }) {
     };
 
     return (
-        <Box sx={{display: 'flex'}}>
+        <Box sx={{ display: 'flex'}}>
             <CssBaseline/>
-            <AppBar position="fixed" open={open}>
-                <Toolbar>
+            <AppBar position="fixed" open={open} >
+                <Toolbar sx={{display:'flex', justifyContent:'space-between'}}>
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
@@ -126,15 +128,16 @@ export default function MiniDrawer({ children }) {
                             ...(open && {display: 'none'}),
                         }}
                     >
-                        <MenuIcon/>
+                        <HomeIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap component="div">
-                        <Link to="/" style={{
+                        <Link to="/user" style={{
                             textDecoration: "none",
-                            color:"white",
-                            fontStyle:"italic"
+                            color: "white",
+                            fontStyle: "italic"
                         }}>Institute of Biochemistry of Hrachya Buniatyan</Link>
                     </Typography>
+                    <MenuListComposition />
                 </Toolbar>
             </AppBar>
             <Drawer variant="permanent" open={open}>
@@ -144,11 +147,11 @@ export default function MiniDrawer({ children }) {
                     </IconButton>
                 </DrawerHeader>
                 <Divider/>
-                <List >
+                <List>
                     <NavBar
                         path={"/user/history"}
                         Name="History"
-                        Icon={<HistoryIcon />}
+                        Icon={<HistoryIcon/>}
                         style={{
                             minHeight: 48,
                             justifyContent: open ? 'initial' : 'center',
@@ -159,7 +162,7 @@ export default function MiniDrawer({ children }) {
                             mr: open ? 3 : 'auto',
                             justifyContent: 'center',
                         }}
-                        styleText={{ opacity: open ? 1 : 0 }}
+                        styleText={{opacity: open ? 1 : 0}}
                     />
                     <NavBar
                         path={"/user/departments"}
@@ -175,7 +178,7 @@ export default function MiniDrawer({ children }) {
                             mr: open ? 3 : 'auto',
                             justifyContent: 'center',
                         }}
-                        styleText={{ opacity: open ? 1 : 0 }}
+                        styleText={{opacity: open ? 1 : 0}}
                     />
                     <NavBar
                         path={"/user/councils"}
@@ -191,7 +194,7 @@ export default function MiniDrawer({ children }) {
                             mr: open ? 3 : 'auto',
                             justifyContent: 'center',
                         }}
-                        styleText={{ opacity: open ? 1 : 0 }}
+                        styleText={{opacity: open ? 1 : 0}}
                     />
                     <NavBar
                         path={"/user/museum"}
@@ -207,7 +210,7 @@ export default function MiniDrawer({ children }) {
                             mr: open ? 3 : 'auto',
                             justifyContent: 'center',
                         }}
-                        styleText={{ opacity: open ? 1 : 0 }}
+                        styleText={{opacity: open ? 1 : 0}}
                     />
                     <NavBar
                         path={"/user/library"}
@@ -223,7 +226,7 @@ export default function MiniDrawer({ children }) {
                             mr: open ? 3 : 'auto',
                             justifyContent: 'center',
                         }}
-                        styleText={{ opacity: open ? 1 : 0 }}
+                        styleText={{opacity: open ? 1 : 0}}
                     />
                     <NavBar
                         path={"/user/trade&union"}
@@ -239,7 +242,7 @@ export default function MiniDrawer({ children }) {
                             mr: open ? 3 : 'auto',
                             justifyContent: 'center',
                         }}
-                        styleText={{ opacity: open ? 1 : 0 }}
+                        styleText={{opacity: open ? 1 : 0}}
                     />
                     <NavBar
                         path={"/user/media"}
@@ -255,7 +258,7 @@ export default function MiniDrawer({ children }) {
                             mr: open ? 3 : 'auto',
                             justifyContent: 'center',
                         }}
-                        styleText={{ opacity: open ? 1 : 0 }}
+                        styleText={{opacity: open ? 1 : 0}}
                     />
                     <NavBar
                         path={"/user/contact"}
@@ -271,28 +274,12 @@ export default function MiniDrawer({ children }) {
                             mr: open ? 3 : 'auto',
                             justifyContent: 'center',
                         }}
-                        styleText={{ opacity: open ? 1 : 0 }}
-                    />
-                    <NavBar
-                        path={"/user/register"}
-                        Name="Register"
-                        Icon={<LockOpenIcon/>}
-                        style={{
-                            minHeight: 48,
-                            justifyContent: open ? 'initial' : 'center',
-                            px: 2.5,
-                        }}
-                        styleItem={{
-                            minWidth: 0,
-                            mr: open ? 3 : 'auto',
-                            justifyContent: 'center',
-                        }}
-                        styleText={{ opacity: open ? 1 : 0 }}
+                        styleText={{opacity: open ? 1 : 0}}
                     />
                 </List>
             </Drawer>
-            <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-              
+            <Box component="main" sx={{flexGrow: 1, p: 3}}>
+
                 <Outlet/>
             </Box>
         </Box>
